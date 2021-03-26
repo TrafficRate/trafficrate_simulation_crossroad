@@ -29,7 +29,7 @@ namespace UrbanRate
         {
             index = 1;
             t = 0;
-            T = new System.Timers.Timer(10);
+            T = new System.Timers.Timer(50);
             T.Elapsed += OnMove;
             T.Enabled = true;
             if (position == 1) mainForm.topCount++;
@@ -167,7 +167,7 @@ namespace UrbanRate
             img.Location = new Point(t[0].X, t[0].Y);
             img.BackColor = Color.Transparent;
             
-            velocity = 0.01 * v;
+            velocity = 0.05 * v;
             mainForm = f;
             trajectory = t;
             switch (t[0].Y)
@@ -205,7 +205,7 @@ namespace UrbanRate
             img.Location = new Point(t[0].X, t[0].Y);
             img.BackColor = Color.Transparent;
             
-            velocity = 0.01 * v;
+            velocity = 0.05 * v;
             mainForm = f;
             trajectory = t;
             switch (t[0].Y)
