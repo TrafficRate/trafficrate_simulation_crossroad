@@ -24,7 +24,7 @@ namespace UrbanRate
         {
             InitializeComponent();
             pictureBox1 = new PictureBox();
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(1, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1068, 696);
             this.pictureBox1.TabIndex = 0;
