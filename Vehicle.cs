@@ -20,6 +20,7 @@ namespace UrbanRate
         protected double velocity;
         protected int index;
         protected int position; // 1 - top; 2 - right; 3 - left; 4 - bottom 
+        protected Boolean waitedOnTrafficLight = false;
 
         int t;
         System.Timers.Timer T;
@@ -43,10 +44,13 @@ namespace UrbanRate
             T.Stop();
             T.Enabled = false;
             img.BeginInvoke((MethodInvoker)delegate () { img.Visible = false; });
-            if (position == 1) mainForm.topCount--;
-            else if (position == 2) mainForm.rightCount--;
-            else if (position == 3) mainForm.leftCount--;
-            else if (position == 4) mainForm.bottomCount--;
+            if (waitedOnTrafficLight == false)
+            {
+	            if (position == 1) mainForm.topCount--;
+	            else if (position == 2) mainForm.rightCount--;
+	            else if (position == 3) mainForm.leftCount--;
+	            else if (position == 4) mainForm.bottomCount--;
+            }
         }
 
         void OnMove(Object sender, ElapsedEventArgs e)
@@ -82,24 +86,25 @@ namespace UrbanRate
         
         void CheckTrafficLight(int currentXY)
         {
-        	if (position == 3 && mainForm.leftCount == 2) currentXY+=160;
-        	else if (position == 2 && mainForm.rightCount == 2) currentXY-=160;
-        	else if (position == 1 && mainForm.topCount == 2) currentXY+=160;
-        	else if (position == 4 && mainForm.bottomCount == 2) currentXY-=160;
+        	int timerInterval = 1000;
+        	if (position == 3 && mainForm.leftCount == 2) { currentXY+=160; timerInterval=3000; }
+        	else if (position == 2 && mainForm.rightCount == 2) { currentXY-=160; timerInterval=3000; }
+        	else if (position == 1 && mainForm.topCount == 2) { currentXY+=160; timerInterval=2000; }
+        	else if (position == 4 && mainForm.bottomCount == 2) { currentXY-=160; timerInterval=2000; } // 1 - top; 2 - right; 3 - left; 4 - bottom
         	if (position == 3 && currentXY >= 88 && currentXY <= 102 && mainForm.leftState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
-            	LightWait = new System.Timers.Timer(1000);
+            	LightWait = new System.Timers.Timer(timerInterval);
             	LightWait.Elapsed += TLSecondWait;
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
         	}
-        	else if (position == 2 && currentXY >= 543 && currentXY <= 557 && mainForm.rightState == false)
+        	else if (position == 2 && currentXY >= 533 && currentXY <= 547 && mainForm.rightState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
-            	LightWait = new System.Timers.Timer(1000);
+            	LightWait = new System.Timers.Timer(timerInterval);
             	LightWait.Elapsed += TLSecondWait;
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
@@ -108,7 +113,7 @@ namespace UrbanRate
         	{
         		T.Stop();
         		T.Enabled = false;
-            	LightWait = new System.Timers.Timer(1000);
+            	LightWait = new System.Timers.Timer(timerInterval);
             	LightWait.Elapsed += TLSecondWait;
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
@@ -117,7 +122,7 @@ namespace UrbanRate
         	{
         		T.Stop();
         		T.Enabled = false;
-            	LightWait = new System.Timers.Timer(1000);
+            	LightWait = new System.Timers.Timer(timerInterval);
             	LightWait.Elapsed += TLSecondWait;
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
@@ -126,12 +131,17 @@ namespace UrbanRate
         
         void TLSecondWait(Object sender, ElapsedEventArgs e)
         {
+        	waitedOnTrafficLight = true;
         	if (position == 3 && mainForm.leftState == true)
         	{
         		T.Enabled = true;
         		T.Start();
         		LightWait.Stop();
         		LightWait.Enabled = false;
+	            if (position == 1) mainForm.topCount--;
+	            else if (position == 2) mainForm.rightCount--;
+	            else if (position == 3) mainForm.leftCount--;
+	            else if (position == 4) mainForm.bottomCount--;
         	}
         	else if (position == 2 && mainForm.rightState == true)
         	{
@@ -139,6 +149,10 @@ namespace UrbanRate
         		T.Start();
         		LightWait.Stop();
         		LightWait.Enabled = false;
+	            if (position == 1) mainForm.topCount--;
+	            else if (position == 2) mainForm.rightCount--;
+	            else if (position == 3) mainForm.leftCount--;
+	            else if (position == 4) mainForm.bottomCount--;
         	}
         	else if (position == 1 && mainForm.topState == true)
         	{
@@ -146,6 +160,10 @@ namespace UrbanRate
         		T.Start();
         		LightWait.Stop();
         		LightWait.Enabled = false;
+	            if (position == 1) mainForm.topCount--;
+	            else if (position == 2) mainForm.rightCount--;
+	            else if (position == 3) mainForm.leftCount--;
+	            else if (position == 4) mainForm.bottomCount--;
         	}
         	else if (position == 4 && mainForm.bottomState == true)
         	{
@@ -153,6 +171,10 @@ namespace UrbanRate
         		T.Start();
         		LightWait.Stop();
         		LightWait.Enabled = false;
+	            if (position == 1) mainForm.topCount--;
+	            else if (position == 2) mainForm.rightCount--;
+	            else if (position == 3) mainForm.leftCount--;
+	            else if (position == 4) mainForm.bottomCount--;
         	}
         	//MessageBox.Show(position.ToString());
         }

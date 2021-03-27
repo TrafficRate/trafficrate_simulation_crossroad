@@ -44,11 +44,11 @@ namespace UrbanRate
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /**Car c = new Car(100, this, new List<Point> { new Point(600, 130), new Point(385, 130), new Point(385, -180) });
+            /**Car c = new Car(100, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
             c.Start();
             Car fc = new Car(1000, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
             fc.Start();
-            Ambulance a = new Ambulance(100, this, new List<Point> { new Point(600, 130), new Point(-180, 130) });
+            Ambulance a = new Ambulance(100, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
             a.Start();*/
             CrossRoadTimer t = new CrossRoadTimer(this);
             t.Start();
@@ -56,19 +56,19 @@ namespace UrbanRate
             button1.Enabled = false;
         }
         //left:   Ambulance a = new Ambulance(100, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
-        //right:  Ambulance a = new Ambulance(100, this, new List<Point> { new Point(600, 130), new Point(-180, 130) });
+        //right:  Ambulance a = new Ambulance(100, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
         //bottom: Ambulance a = new Ambulance(100, this, new List<Point> { new Point(385, 560), new Point(385, -180) });
         //top:    Ambulance a = new Ambulance(100, this, new List<Point> { new Point(250, -180), new Point(250, 560) });
         //bottom: Car c = new Car(100, this, new List<Point> { new Point(385, 560), new Point(385, 250), new Point(600, 250) });
-        //left:   Car c = new Car(100, this, new List<Point> { new Point(-6, 250), new Point(275, 250), new Point(275, 600) });
+        //left:   Car c = new Car(100, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
         //top:    Car c = new Car(100, this, new List<Point> { new Point(250, -180), new Point(250, 130), new Point(-180, 130) });
-        //right:  Car c = new Car(100, this, new List<Point> { new Point(600, 130), new Point(385, 130), new Point(385, -180) });
+        //right:  Car c = new Car(100, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
         
         	
         public void generateCars()
         {
         	Random rnd = new Random();
-        	int milisCount = rnd.Next(1000, 5000);
+        	int milisCount = rnd.Next(2000, 5000);
         	carTimer = new System.Windows.Forms.Timer();
 		    carTimer.Tick += new EventHandler(launchCarTimerEvent);
 		    carTimer.Interval = milisCount;
@@ -78,14 +78,14 @@ namespace UrbanRate
 		public void launchCarTimerEvent(object source, EventArgs e)
 		{			
 			Random rnd = new Random();
-        	int carSpeed = rnd.Next(100, 500);
+        	int carSpeed = 250;
         	int wayPossibility = rnd.Next(0, 8);
         	while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 2)   || 
 					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 2)  ||
-					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 2) ||
-					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 2)    )
+					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 1) ||
+					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 1)    )
         	{
-        		if (leftCount >= 2 && rightCount >= 2 && bottomCount >= 2 && topCount >= 2) return;
+        		if (leftCount >= 2 && rightCount >= 2 && bottomCount >= 1 && topCount >= 1) return;
         		wayPossibility = rnd.Next(0, 8);	
         	}
         	int isAmbulance = rnd.Next(0, 7); // 1 in 7 probability to get an ambulance
@@ -99,7 +99,7 @@ namespace UrbanRate
 						a.Start();
 						break;
 	        		case 1: 
-        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(600, 130), new Point(-180, 130) });
+        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
 						a.Start();
 						break;
 	        		case 2: 
@@ -115,7 +115,7 @@ namespace UrbanRate
 						a.Start();
 						break;
 	        		case 5: 
-        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-6, 250), new Point(275, 250), new Point(275, 600) });
+        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
 						a.Start();
 						break;
 	        		case 6: 
@@ -123,7 +123,7 @@ namespace UrbanRate
 						a.Start();
 						break;
 	        		case 7: 
-        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(600, 130), new Point(385, 130), new Point(385, -180) });
+        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
 						a.Start();
 						break;
 	        		default:
@@ -141,7 +141,7 @@ namespace UrbanRate
 						c.Start();
 						break;
 	        		case 1: 
-        				c = new Car(carSpeed, this, new List<Point> { new Point(600, 130), new Point(-180, 130) });
+        				c = new Car(carSpeed, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
 						c.Start();
 						break;
 	        		case 2: 
@@ -157,7 +157,7 @@ namespace UrbanRate
 						c.Start();
 						break;
 	        		case 5: 
-        				c = new Car(carSpeed, this, new List<Point> { new Point(-6, 250), new Point(275, 250), new Point(275, 600) });
+        				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
 						c.Start();
 						break;
 	        		case 6: 
@@ -165,7 +165,7 @@ namespace UrbanRate
 						c.Start();
 						break;
 	        		case 7: 
-        				c = new Car(carSpeed, this, new List<Point> { new Point(600, 130), new Point(385, 130), new Point(385, -180) });
+        				c = new Car(carSpeed, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
 						c.Start();
 						break;
 	        		default:
@@ -374,10 +374,10 @@ namespace UrbanRate
         	int wayPossibility = rnd.Next(0, 8);    
 			while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 2)   || 
 					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 2)  ||
-					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 2) ||
-					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 2)    )
+					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 1) ||
+					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 1)    )
         	{
-        		if (leftCount >= 2 && rightCount >= 2 && bottomCount >= 2 && topCount >= 2) return;
+        		if (leftCount >= 2 && rightCount >= 2 && bottomCount >= 2 && topCount >= 1) return;
         		wayPossibility = rnd.Next(0, 8);	
         	}        	
         	Car c;
@@ -388,7 +388,7 @@ namespace UrbanRate
 					c.Start();
 					break;
         		case 1: 
-    				c = new Car(carSpeed, this, new List<Point> { new Point(600, 130), new Point(-180, 130) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
 					c.Start();
 					break;
         		case 2: 
@@ -404,7 +404,7 @@ namespace UrbanRate
 					c.Start();
 					break;
         		case 5: 
-    				c = new Car(carSpeed, this, new List<Point> { new Point(-6, 250), new Point(275, 250), new Point(275, 600) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
 					c.Start();
 					break;
         		case 6: 
@@ -412,7 +412,7 @@ namespace UrbanRate
 					c.Start();
 					break;
         		case 7: 
-    				c = new Car(carSpeed, this, new List<Point> { new Point(600, 130), new Point(385, 130), new Point(385, -180) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
 					c.Start();
 					break;
         		default:
@@ -441,7 +441,7 @@ namespace UrbanRate
 					a.Start();
 					break;
         		case 1: 
-    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(600, 130), new Point(-180, 130) });
+    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
 					a.Start();
 					break;
         		case 2: 
@@ -457,7 +457,7 @@ namespace UrbanRate
 					a.Start();
 					break;
         		case 5: 
-    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-6, 250), new Point(275, 250), new Point(275, 600) });
+    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
 					a.Start();
 					break;
         		case 6: 
@@ -465,7 +465,7 @@ namespace UrbanRate
 					a.Start();
 					break;
         		case 7: 
-    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(600, 130), new Point(385, 130), new Point(385, -180) });
+    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
 					a.Start();
 					break;
         		default:
