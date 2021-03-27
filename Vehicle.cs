@@ -33,10 +33,13 @@ namespace UrbanRate
             T = new System.Timers.Timer(50);
             T.Elapsed += OnMove;
             T.Enabled = true;
-            if (position == 1) mainForm.topCount++;
-            else if (position == 2) mainForm.rightCount++;
-            else if (position == 3) mainForm.leftCount++;
-            else if (position == 4) mainForm.bottomCount++;
+            if (this is Car)
+            {
+	            if (position == 1) mainForm.topCount++;
+	            else if (position == 2) mainForm.rightCount++;
+	            else if (position == 3) mainForm.leftCount++;
+	            else if (position == 4) mainForm.bottomCount++;
+            }
         }
 
         public void Stop()
@@ -51,7 +54,7 @@ namespace UrbanRate
 	            else if (position == 3) mainForm.leftCount--;
 	            else if (position == 4) mainForm.bottomCount--;
             }
-            if (this is Ambulance)
+            if (this is Ambulance || velocity >= 35)
             {
             	if (mainForm.bottomState == false) mainForm.barrierBottom.BackColor = Color.FromArgb(255, 128, 128);
             	if (mainForm.topState == false) mainForm.barrierTop.BackColor = Color.FromArgb(255, 128, 128);
@@ -102,7 +105,15 @@ namespace UrbanRate
         public void CheckTrafficLight(int currentXY)
         {
         	int timerInterval = 1000;
-        	if (this is Ambulance)
+        	if (position == 3 && mainForm.leftCount == 2) { currentXY+=160; timerInterval=3000; }
+        	else if (position == 2 && mainForm.rightCount == 2) { currentXY-=160; timerInterval=3000; }
+        	else if (position == 1 && mainForm.topCount == 2) { currentXY+=160; timerInterval=2000; }
+        	else if (position == 4 && mainForm.bottomCount == 2) { currentXY-=160; timerInterval=2000; } // 1 - top; 2 - right; 3 - left; 4 - bottom
+        	if ( (velocity >= 35 && position == 3 && Color.Equals(mainForm.yellowLeft.BackColor, Color.Yellow))  ||
+        	     (velocity >= 35 && position == 2 && Color.Equals(mainForm.yellowRight.BackColor, Color.Yellow)) ||
+        	     (velocity >= 35 && position == 1 && Color.Equals(mainForm.yellowTop.BackColor, Color.Yellow))   ||
+        	     (velocity >= 35 && position == 4 && Color.Equals(mainForm.yellowBottom.BackColor, Color.Yellow))||
+					this is Ambulance )
         	{
         		if (position == 3) mainForm.barrierLeft.BackColor = Color.FromArgb(192, 255, 192);
         		else if (position == 2) mainForm.barrierRight.BackColor = Color.FromArgb(192, 255, 192);
@@ -110,15 +121,6 @@ namespace UrbanRate
         		else if (position == 4) mainForm.barrierBottom.BackColor = Color.FromArgb(192, 255, 192);
         		return;
         	}
-        	if (position == 3 && mainForm.leftCount == 2) { currentXY+=160; timerInterval=3000; }
-        	else if (position == 2 && mainForm.rightCount == 2) { currentXY-=160; timerInterval=3000; }
-        	else if (position == 1 && mainForm.topCount == 2) { currentXY+=160; timerInterval=2000; }
-        	else if (position == 4 && mainForm.bottomCount == 2) { currentXY-=160; timerInterval=2000; } // 1 - top; 2 - right; 3 - left; 4 - bottom
-        	if ( (velocity >= 35 && position == 3 && mainForm.yellowLeft.BackColor == Color.Yellow)  ||
-        	     (velocity >= 35 && position == 2 && mainForm.yellowRight.BackColor == Color.Yellow) ||
-        	     (velocity >= 35 && position == 1 && mainForm.yellowTop.BackColor == Color.Yellow)   ||
-        	     (velocity >= 35 && position == 4 && mainForm.yellowBottom.BackColor == Color.Yellow) )
-        		return;
         	if (position == 3 && ((currentXY >= 88 && currentXY <= 102) || (velocity >= 35 && currentXY >= 50 && currentXY <= 102)) && mainForm.leftState == false)
         	{
         		T.Stop();
