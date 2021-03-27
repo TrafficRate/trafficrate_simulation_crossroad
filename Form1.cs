@@ -15,6 +15,7 @@ namespace UrbanRate
     public partial class Form1 : Form
     {        
         public Boolean topState = false, bottomState = false, leftState = true, rightState = true;
+        public Boolean topFastCar = false, bottomFastCar = false, leftFastCar = false, rightFastCar = false;
         public int topCount = 0, bottomCount = 0, leftCount = 0, rightCount = 0;
         
         System.Windows.Forms.Timer carTimer;
@@ -80,15 +81,15 @@ namespace UrbanRate
 			Random rnd = new Random();
         	int carSpeed = 250;
         	int wayPossibility = rnd.Next(0, 8);
-        	while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 2)   || 
-					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 2)  ||
-					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 1) ||
-					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 1)    )
+        	while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 2 && leftFastCar == false)     || 
+					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 2 && rightFastCar == false)   ||
+					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 1 && bottomFastCar == false) ||
+					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 1 && topFastCar == false)       )
         	{
         		if (leftCount >= 2 && rightCount >= 2 && bottomCount >= 1 && topCount >= 1) return;
         		wayPossibility = rnd.Next(0, 8);	
         	}
-        	int isAmbulance = rnd.Next(0, 7); // 1 in 7 probability to get an ambulance
+        	int isAmbulance = 0; //rnd.Next(0, 7); // 1 in 7 probability to get an ambulance
         	if (isAmbulance == 5)
         	{
         		Ambulance a;
@@ -372,46 +373,54 @@ namespace UrbanRate
 			Random rnd = new Random();
         	int carSpeed = rnd.Next(700, 1000);
         	int wayPossibility = rnd.Next(0, 8);    
-			while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 2)   || 
-					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 2)  ||
+			while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 1)   || 
+					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 1)  ||
 					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 1) ||
 					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 1)    )
         	{
-        		if (leftCount >= 2 && rightCount >= 2 && bottomCount >= 2 && topCount >= 1) return;
-        		wayPossibility = rnd.Next(0, 8);	
+        		if (leftCount >= 1 && rightCount >= 1 && bottomCount >= 1 && topCount >= 1) return;
+        		wayPossibility = rnd.Next(0, 8);
         	}        	
         	Car c;
     		switch (wayPossibility)
         	{
         		case 0: 
+    				leftFastCar = true;
     				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
 					c.Start();
 					break;
         		case 1: 
+					rightFastCar = true;
     				c = new Car(carSpeed, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
 					c.Start();
 					break;
         		case 2: 
+					bottomFastCar = true;
     				c = new Car(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, -180) });
 					c.Start();
 					break;
         		case 3: 
+					topFastCar = true;
     				c = new Car(carSpeed, this, new List<Point> { new Point(250, -180), new Point(250, 560) });
 					c.Start();
 					break;
         		case 4: 
+					bottomFastCar = true;
     				c = new Car(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 250), new Point(600, 250) });
 					c.Start();
 					break;
         		case 5: 
+					leftFastCar = true;
     				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
 					c.Start();
 					break;
         		case 6: 
+					topFastCar = true;
     				c = new Car(carSpeed, this, new List<Point> { new Point(250, -180), new Point(250, 130), new Point(-180, 130) });
 					c.Start();
 					break;
         		case 7: 
+					bottomFastCar = true;
     				c = new Car(carSpeed, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
 					c.Start();
 					break;
@@ -423,7 +432,7 @@ namespace UrbanRate
         void Button3Click(object sender, EventArgs e)
         {
 			Random rnd = new Random();
-        	int carSpeed = rnd.Next(100, 1000);
+        	int carSpeed = 500;
         	int wayPossibility = rnd.Next(0, 8);
         	while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 2)   || 
 					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 2)  ||

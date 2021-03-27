@@ -51,6 +51,20 @@ namespace UrbanRate
 	            else if (position == 3) mainForm.leftCount--;
 	            else if (position == 4) mainForm.bottomCount--;
             }
+            if (this is Ambulance)
+            {
+            	if (mainForm.bottomState == false) mainForm.barrierBottom.BackColor = Color.FromArgb(255, 128, 128);
+            	if (mainForm.topState == false) mainForm.barrierTop.BackColor = Color.FromArgb(255, 128, 128);
+            	if (mainForm.leftState == false) mainForm.barrierLeft.BackColor = Color.FromArgb(255, 128, 128);
+            	if (mainForm.rightState == false) mainForm.barrierRight.BackColor = Color.FromArgb(255, 128, 128);
+            }
+            if (velocity >= 35)
+            {
+            	if (position == 1) mainForm.topFastCar= false;
+	            else if (position == 2) mainForm.rightFastCar = false;
+	            else if (position == 3) mainForm.leftFastCar = false;
+	            else if (position == 4) mainForm.bottomFastCar = false;
+            }
         }
 
         void OnMove(Object sender, ElapsedEventArgs e)
@@ -70,7 +84,7 @@ namespace UrbanRate
                 int x2 = 1, y2 = 0;
                 double angle = Math.Atan2(x2 * y1 - y2 * x1, x1 * x2 + y1 * y2);
                 img.BeginInvoke((MethodInvoker)delegate { 
-                    if (this is Ambulance) img.Image = ImageTools.RotateImage((Bitmap)Properties.Resources.AmbulanceImage, (float)(180.0 * angle / Math.PI)); 
+                    if (this is Ambulance) img.Image = ImageTools.RotateImage((Bitmap)Properties.Resources.AmbulanceImage, (float)(180.0 * angle / Math.PI));
                     else img.Image = ImageTools.RotateImage((Bitmap)Properties.Resources.CarImage, (float)(180.0 * angle / Math.PI)); 
                 });
             }
@@ -79,19 +93,33 @@ namespace UrbanRate
                 double L0 = velocity * t;
                 double x = trajectory[index - 1].X + L0 * x1 / L, y = trajectory[index - 1].Y + L0 * y1 / L;
                 img.BeginInvoke((MethodInvoker)delegate () { img.Location = new Point((int)x, (int)y); });
+                //if (this is Ambulance) return;
                 if (position == 3 || position == 2) CheckTrafficLight(Convert.ToInt32(x));
                 else CheckTrafficLight(Convert.ToInt32(y));
             }
         }
         
-        void CheckTrafficLight(int currentXY)
+        public void CheckTrafficLight(int currentXY)
         {
         	int timerInterval = 1000;
+        	if (this is Ambulance)
+        	{
+        		if (position == 3) mainForm.barrierLeft.BackColor = Color.FromArgb(192, 255, 192);
+        		else if (position == 2) mainForm.barrierRight.BackColor = Color.FromArgb(192, 255, 192);
+        		else if (position == 1) mainForm.barrierTop.BackColor = Color.FromArgb(192, 255, 192);
+        		else if (position == 4) mainForm.barrierBottom.BackColor = Color.FromArgb(192, 255, 192);
+        		return;
+        	}
         	if (position == 3 && mainForm.leftCount == 2) { currentXY+=160; timerInterval=3000; }
         	else if (position == 2 && mainForm.rightCount == 2) { currentXY-=160; timerInterval=3000; }
         	else if (position == 1 && mainForm.topCount == 2) { currentXY+=160; timerInterval=2000; }
         	else if (position == 4 && mainForm.bottomCount == 2) { currentXY-=160; timerInterval=2000; } // 1 - top; 2 - right; 3 - left; 4 - bottom
-        	if (position == 3 && currentXY >= 88 && currentXY <= 102 && mainForm.leftState == false)
+        	if ( (velocity >= 35 && position == 3 && mainForm.yellowLeft.BackColor == Color.Yellow)  ||
+        	     (velocity >= 35 && position == 2 && mainForm.yellowRight.BackColor == Color.Yellow) ||
+        	     (velocity >= 35 && position == 1 && mainForm.yellowTop.BackColor == Color.Yellow)   ||
+        	     (velocity >= 35 && position == 4 && mainForm.yellowBottom.BackColor == Color.Yellow) )
+        		return;
+        	if (position == 3 && ((currentXY >= 88 && currentXY <= 102) || (velocity >= 35 && currentXY >= 50 && currentXY <= 102)) && mainForm.leftState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
@@ -100,7 +128,7 @@ namespace UrbanRate
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
         	}
-        	else if (position == 2 && currentXY >= 533 && currentXY <= 547 && mainForm.rightState == false)
+        	else if (position == 2 && ((currentXY >= 533 && currentXY <= 547) || (velocity >= 35 && currentXY >= 533 && currentXY <= 583 )) && mainForm.rightState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
@@ -109,7 +137,7 @@ namespace UrbanRate
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
         	}
-        	else if (position == 1 && currentXY >= -30 && currentXY <= -16 && mainForm.topState == false)
+        	else if (position == 1 && ((currentXY >= -30 && currentXY <= -16) || (velocity >= 35 && currentXY >= -60 && currentXY <= -16)) && mainForm.topState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
@@ -118,7 +146,7 @@ namespace UrbanRate
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
         	}
-        	else if (position == 4 && currentXY >= 426 && currentXY <= 440 && mainForm.bottomState == false)
+        	else if (position == 4 && ((currentXY >= 426 && currentXY <= 450) || (velocity >= 35 && currentXY >= 426 && currentXY <= 470)) && mainForm.bottomState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
@@ -129,7 +157,7 @@ namespace UrbanRate
         	}
         }
         
-        void TLSecondWait(Object sender, ElapsedEventArgs e)
+        public void TLSecondWait(Object sender, ElapsedEventArgs e)
         {
         	waitedOnTrafficLight = true;
         	if (position == 3 && mainForm.leftState == true)
@@ -211,6 +239,9 @@ namespace UrbanRate
             }
             int x1 = t[1].X - t[0].X, y1 = t[1].Y - t[0].Y, x2 = 1, y2 = 0;
             double angle = Math.Atan2(x2 * y1 - y2 * x1, x2 * x1 + y2 * y1);
+            if (position == 3 || position == 2) CheckTrafficLight(Convert.ToInt32(x1));
+            else CheckTrafficLight(Convert.ToInt32(y1));
+                
             img.Image = ImageTools.RotateImage((Bitmap)Properties.Resources.CarImage, (float)(180.0 * angle / Math.PI));
             f.pictureBox1.Controls.Add(img);
             f.pictureBox1.Controls.SetChildIndex(img, 5);
@@ -251,7 +282,7 @@ namespace UrbanRate
             double angle = Math.Atan2(x2 * y1 - y2 * x1, x2 * x1 + y2 * y1);
             img.Image = ImageTools.RotateImage((Bitmap)Properties.Resources.AmbulanceImage, (float)(180.0 * angle / Math.PI));
             f.pictureBox1.Controls.Add(img);
-            f.pictureBox1.Controls.SetChildIndex(img, 5);
+            f.pictureBox1.Controls.SetChildIndex(img, 0);
         }
     }
 

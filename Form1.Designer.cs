@@ -449,24 +449,24 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label barrierRight;
-        private System.Windows.Forms.Label barrierTop;
+        public System.Windows.Forms.Label barrierRight;
+        public System.Windows.Forms.Label barrierTop;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label redTop;
-        private System.Windows.Forms.Label yellowTop;
+        public System.Windows.Forms.Label yellowTop;
         private System.Windows.Forms.Label greenTop;
         private System.Windows.Forms.Label greenBottom;
-        private System.Windows.Forms.Label yellowBottom;
+        public System.Windows.Forms.Label yellowBottom;
         private System.Windows.Forms.Label redBottom;
         private System.Windows.Forms.Label redLeft;
-        private System.Windows.Forms.Label yellowLeft;
+        public System.Windows.Forms.Label yellowLeft;
         private System.Windows.Forms.Label greenLeft;
         private System.Windows.Forms.Label redRight;
-        private System.Windows.Forms.Label yellowRight;
+        public System.Windows.Forms.Label yellowRight;
         private System.Windows.Forms.Label greenRight;
         private System.Windows.Forms.Label timerLeft;
         private System.Windows.Forms.Label timerBottom;
@@ -480,8 +480,8 @@
         private System.Windows.Forms.Label pbarrierBR;
         private System.Windows.Forms.Label pberrierTR;
         private System.Windows.Forms.Label pbarrierTL;
-        private System.Windows.Forms.Label barrierLeft;
-        private System.Windows.Forms.Label barrierBottom;
+        public System.Windows.Forms.Label barrierLeft;
+        public System.Windows.Forms.Label barrierBottom;
     }
 }
 
