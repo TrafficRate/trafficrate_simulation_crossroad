@@ -82,11 +82,11 @@ namespace UrbanRate
         
         void CheckTrafficLight(int currentXY)
         {
-        	if (position == 3 && mainForm.leftCount == 2) currentXY-=160;
+        	if (position == 3 && mainForm.leftCount == 2) currentXY+=160;
         	else if (position == 2 && mainForm.rightCount == 2) currentXY-=160;
-        	else if (position == 1 && mainForm.topCount == 2) currentXY-=160;
+        	else if (position == 1 && mainForm.topCount == 2) currentXY+=160;
         	else if (position == 4 && mainForm.bottomCount == 2) currentXY-=160;
-        	if (position == 3 && currentXY >= 98 && currentXY <= 102 && mainForm.leftState == false)
+        	if (position == 3 && currentXY >= 88 && currentXY <= 102 && mainForm.leftState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
@@ -95,7 +95,7 @@ namespace UrbanRate
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
         	}
-        	else if (position == 2 && currentXY >= 553 && currentXY <= 557 && mainForm.rightState == false)
+        	else if (position == 2 && currentXY >= 543 && currentXY <= 557 && mainForm.rightState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
@@ -104,7 +104,7 @@ namespace UrbanRate
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
         	}
-        	else if (position == 1 && currentXY >= -20 && currentXY <= -16 && mainForm.topState == false)
+        	else if (position == 1 && currentXY >= -30 && currentXY <= -16 && mainForm.topState == false)
         	{
         		T.Stop();
         		T.Enabled = false;
@@ -113,7 +113,7 @@ namespace UrbanRate
             	LightWait.Enabled = true;
             	//MessageBox.Show(position.ToString() + " " + currentXY.ToString() + " " + mainForm.topState.ToString() + " " + mainForm.rightState.ToString() + " " + mainForm.leftState.ToString() + " " + mainForm.bottomState.ToString());
         	}
-        	else if (position == 4 && currentXY >= 436 && currentXY <= 440 && mainForm.bottomState == false)
+        	else if (position == 4 && currentXY >= 426 && currentXY <= 440 && mainForm.bottomState == false)
         	{
         		T.Stop();
         		T.Enabled = false;

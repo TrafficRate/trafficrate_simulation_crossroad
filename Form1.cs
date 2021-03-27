@@ -78,7 +78,7 @@ namespace UrbanRate
 		public void launchCarTimerEvent(object source, EventArgs e)
 		{			
 			Random rnd = new Random();
-        	int carSpeed = rnd.Next(100, 1000);
+        	int carSpeed = rnd.Next(100, 500);
         	int wayPossibility = rnd.Next(0, 8);
         	while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 2)   || 
 					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 2)  ||
