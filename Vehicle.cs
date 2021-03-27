@@ -228,7 +228,7 @@ namespace UrbanRate
             	case 130:
             		position = 2;
             		break;
-            	case 250:
+            	case 260:
             		position = 3;
             		break;
             	case 560:
@@ -269,7 +269,7 @@ namespace UrbanRate
             	case 130:
             		position = 2;
             		break;
-            	case 250:
+            	case 260:
             		position = 3;
             		break;
             	case 560:

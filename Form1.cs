@@ -47,7 +47,7 @@ namespace UrbanRate
         {
             /**Car c = new Car(100, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
             c.Start();
-            Car fc = new Car(1000, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
+            Car fc = new Car(1000, this, new List<Point> { new Point(-256, 260), new Point(600, 260) });
             fc.Start();
             Ambulance a = new Ambulance(100, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
             a.Start();*/
@@ -56,12 +56,12 @@ namespace UrbanRate
             generateCars();
             button1.Enabled = false;
         }
-        //left:   Ambulance a = new Ambulance(100, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
+        //left:   Ambulance a = new Ambulance(100, this, new List<Point> { new Point(-256, 260), new Point(600, 260) });
         //right:  Ambulance a = new Ambulance(100, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
         //bottom: Ambulance a = new Ambulance(100, this, new List<Point> { new Point(385, 560), new Point(385, -180) });
         //top:    Ambulance a = new Ambulance(100, this, new List<Point> { new Point(250, -180), new Point(250, 560) });
-        //bottom: Car c = new Car(100, this, new List<Point> { new Point(385, 560), new Point(385, 250), new Point(600, 250) });
-        //left:   Car c = new Car(100, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
+        //bottom: Car c = new Car(100, this, new List<Point> { new Point(385, 560), new Point(385, 260), new Point(600, 260) });
+        //left:   Car c = new Car(100, this, new List<Point> { new Point(-256, 260), new Point(250, 260), new Point(250, 600) });
         //top:    Car c = new Car(100, this, new List<Point> { new Point(250, -180), new Point(250, 130), new Point(-180, 130) });
         //right:  Car c = new Car(100, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
         
@@ -96,7 +96,7 @@ namespace UrbanRate
 	        	switch (wayPossibility)
 	        	{
 	        		case 0: 
-        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
+        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(600, 260) });
 						a.Start();
 						break;
 	        		case 1: 
@@ -112,11 +112,11 @@ namespace UrbanRate
 						a.Start();
 						break;
 	        		case 4: 
-        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 250), new Point(600, 250) });
+        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 260), new Point(600, 260) });
 						a.Start();
 						break;
 	        		case 5: 
-        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
+        				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(250, 260), new Point(250, 600) });
 						a.Start();
 						break;
 	        		case 6: 
@@ -138,7 +138,7 @@ namespace UrbanRate
         		switch (wayPossibility)
 	        	{
 	        		case 0: 
-        				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
+        				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(600, 260) });
 						c.Start();
 						break;
 	        		case 1: 
@@ -154,11 +154,11 @@ namespace UrbanRate
 						c.Start();
 						break;
 	        		case 4: 
-        				c = new Car(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 250), new Point(600, 250) });
+        				c = new Car(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 260), new Point(600, 260) });
 						c.Start();
 						break;
 	        		case 5: 
-        				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
+        				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(250, 260), new Point(250, 600) });
 						c.Start();
 						break;
 	        		case 6: 
@@ -386,7 +386,7 @@ namespace UrbanRate
         	{
         		case 0: 
     				leftFastCar = true;
-    				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(600, 260) });
 					c.Start();
 					break;
         		case 1: 
@@ -406,12 +406,12 @@ namespace UrbanRate
 					break;
         		case 4: 
 					bottomFastCar = true;
-    				c = new Car(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 250), new Point(600, 250) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 260), new Point(600, 260) });
 					c.Start();
 					break;
         		case 5: 
 					leftFastCar = true;
-    				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(250, 260), new Point(250, 600) });
 					c.Start();
 					break;
         		case 6: 
@@ -446,7 +446,7 @@ namespace UrbanRate
         	switch (wayPossibility)
         	{
         		case 0: 
-    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(600, 250) });
+    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(600, 260) });
 					a.Start();
 					break;
         		case 1: 
@@ -462,11 +462,11 @@ namespace UrbanRate
 					a.Start();
 					break;
         		case 4: 
-    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 250), new Point(600, 250) });
+    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, 260), new Point(600, 260) });
 					a.Start();
 					break;
         		case 5: 
-    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 250), new Point(275, 250), new Point(275, 600) });
+    				a = new Ambulance(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(250, 260), new Point(250, 600) });
 					a.Start();
 					break;
         		case 6: 
