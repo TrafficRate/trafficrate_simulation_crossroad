@@ -81,10 +81,10 @@ namespace UrbanRate
 			Random rnd = new Random();
         	int carSpeed = 250;
         	int wayPossibility = rnd.Next(0, 8);
-        	while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 2 && leftFastCar == false)     || 
-					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 2 && rightFastCar == false)   ||
-					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 1 && bottomFastCar == false) ||
-					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 1 && topFastCar == false)       )
+        	while ( ((wayPossibility == 0 || wayPossibility == 5) && (leftCount >= 2 || leftFastCar))     ||
+        	        ((wayPossibility == 1 || wayPossibility == 7) && (rightCount >= 2 || rightFastCar))   ||
+        	        ((wayPossibility == 2 || wayPossibility == 4) && (bottomCount >= 1 || bottomFastCar)) ||
+        	        ((wayPossibility == 3 || wayPossibility == 6) && (topCount >= 1 || topFastCar))       )
         	{
         		if (leftCount >= 2 && rightCount >= 2 && bottomCount >= 1 && topCount >= 1) return;
         		wayPossibility = rnd.Next(0, 8);	

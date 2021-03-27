@@ -31,7 +31,6 @@
         	System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
         	this.barrierRight = new System.Windows.Forms.Label();
         	this.barrierTop = new System.Windows.Forms.Label();
-        	this.label38 = new System.Windows.Forms.Label();
         	this.button1 = new System.Windows.Forms.Button();
         	this.button2 = new System.Windows.Forms.Button();
         	this.button3 = new System.Windows.Forms.Button();
@@ -61,6 +60,8 @@
         	this.pbarrierTL = new System.Windows.Forms.Label();
         	this.barrierLeft = new System.Windows.Forms.Label();
         	this.barrierBottom = new System.Windows.Forms.Label();
+        	this.label38 = new System.Windows.Forms.Label();
+        	this.label1 = new System.Windows.Forms.Label();
         	this.SuspendLayout();
         	// 
         	// barrierRight
@@ -82,26 +83,19 @@
         	this.barrierTop.TabIndex = 8;
         	this.barrierTop.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         	// 
-        	// label38
-        	// 
-        	this.label38.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-        	this.label38.Location = new System.Drawing.Point(-4, -3);
-        	this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-        	this.label38.Name = "label38";
-        	this.label38.Size = new System.Drawing.Size(799, 47);
-        	this.label38.TabIndex = 39;
-        	// 
         	// button1
         	// 
-        	this.button1.BackColor = System.Drawing.Color.Gainsboro;
+        	this.button1.BackColor = System.Drawing.Color.White;
         	this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
         	this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        	this.button1.Location = new System.Drawing.Point(493, 10);
+        	this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        	this.button1.Location = new System.Drawing.Point(21, 9);
         	this.button1.Margin = new System.Windows.Forms.Padding(2);
         	this.button1.Name = "button1";
-        	this.button1.Size = new System.Drawing.Size(87, 29);
+        	this.button1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+        	this.button1.Size = new System.Drawing.Size(125, 29);
         	this.button1.TabIndex = 40;
-        	this.button1.Text = "START";
+        	this.button1.Text = "СТАРТ";
         	this.button1.UseVisualStyleBackColor = false;
         	this.button1.Click += new System.EventHandler(this.button1_Click);
         	// 
@@ -109,12 +103,14 @@
         	// 
         	this.button2.BackColor = System.Drawing.Color.Gainsboro;
         	this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        	this.button2.Location = new System.Drawing.Point(591, 10);
+        	this.button2.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+        	this.button2.Location = new System.Drawing.Point(473, 9);
         	this.button2.Margin = new System.Windows.Forms.Padding(2);
         	this.button2.Name = "button2";
-        	this.button2.Size = new System.Drawing.Size(87, 29);
+        	this.button2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+        	this.button2.Size = new System.Drawing.Size(163, 29);
         	this.button2.TabIndex = 41;
-        	this.button2.Text = "FAST CAR";
+        	this.button2.Text = "ЗАСИЛЕНА КОЛА";
         	this.button2.UseVisualStyleBackColor = false;
         	this.button2.Click += new System.EventHandler(this.Button2Click);
         	// 
@@ -122,12 +118,14 @@
         	// 
         	this.button3.BackColor = System.Drawing.Color.Gainsboro;
         	this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        	this.button3.Location = new System.Drawing.Point(690, 10);
+        	this.button3.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+        	this.button3.Location = new System.Drawing.Point(649, 9);
         	this.button3.Margin = new System.Windows.Forms.Padding(2);
         	this.button3.Name = "button3";
-        	this.button3.Size = new System.Drawing.Size(87, 29);
+        	this.button3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+        	this.button3.Size = new System.Drawing.Size(127, 29);
         	this.button3.TabIndex = 42;
-        	this.button3.Text = "AMBULANCE";
+        	this.button3.Text = "ЛИНЕЙКА";
         	this.button3.UseVisualStyleBackColor = false;
         	this.button3.Click += new System.EventHandler(this.Button3Click);
         	// 
@@ -259,10 +257,11 @@
         	// 
         	this.timerLeft.BackColor = System.Drawing.SystemColors.ButtonHighlight;
         	this.timerLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        	this.timerLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+        	this.timerLeft.Font = new System.Drawing.Font("Segoe UI", 23.25F, System.Drawing.FontStyle.Bold);
         	this.timerLeft.Location = new System.Drawing.Point(226, 424);
         	this.timerLeft.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
         	this.timerLeft.Name = "timerLeft";
+        	this.timerLeft.Padding = new System.Windows.Forms.Padding(3, 0, 0, 4);
         	this.timerLeft.Size = new System.Drawing.Size(70, 69);
         	this.timerLeft.TabIndex = 55;
         	this.timerLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -271,10 +270,11 @@
         	// 
         	this.timerBottom.BackColor = System.Drawing.SystemColors.ButtonHighlight;
         	this.timerBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        	this.timerBottom.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+        	this.timerBottom.Font = new System.Drawing.Font("Segoe UI", 23.25F, System.Drawing.FontStyle.Bold);
         	this.timerBottom.Location = new System.Drawing.Point(530, 389);
         	this.timerBottom.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
         	this.timerBottom.Name = "timerBottom";
+        	this.timerBottom.Padding = new System.Windows.Forms.Padding(3, 0, 0, 4);
         	this.timerBottom.Size = new System.Drawing.Size(70, 69);
         	this.timerBottom.TabIndex = 56;
         	this.timerBottom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -283,10 +283,11 @@
         	// 
         	this.timerRight.BackColor = System.Drawing.SystemColors.ButtonHighlight;
         	this.timerRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        	this.timerRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+        	this.timerRight.Font = new System.Drawing.Font("Segoe UI", 23.25F, System.Drawing.FontStyle.Bold);
         	this.timerRight.Location = new System.Drawing.Point(496, 69);
         	this.timerRight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
         	this.timerRight.Name = "timerRight";
+        	this.timerRight.Padding = new System.Windows.Forms.Padding(3, 0, 0, 4);
         	this.timerRight.Size = new System.Drawing.Size(70, 69);
         	this.timerRight.TabIndex = 57;
         	this.timerRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -295,10 +296,11 @@
         	// 
         	this.timerTop.BackColor = System.Drawing.SystemColors.ButtonHighlight;
         	this.timerTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-        	this.timerTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+        	this.timerTop.Font = new System.Drawing.Font("Segoe UI", 23.25F, System.Drawing.FontStyle.Bold);
         	this.timerTop.Location = new System.Drawing.Point(193, 92);
         	this.timerTop.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
         	this.timerTop.Name = "timerTop";
+        	this.timerTop.Padding = new System.Windows.Forms.Padding(3, 0, 0, 4);
         	this.timerTop.Size = new System.Drawing.Size(70, 69);
         	this.timerTop.TabIndex = 58;
         	this.timerTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -401,11 +403,34 @@
         	this.barrierBottom.Size = new System.Drawing.Size(89, 20);
         	this.barrierBottom.TabIndex = 70;
         	// 
+        	// label38
+        	// 
+        	this.label38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+        	this.label38.Location = new System.Drawing.Point(-4, -3);
+        	this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+        	this.label38.Name = "label38";
+        	this.label38.Size = new System.Drawing.Size(799, 47);
+        	this.label38.TabIndex = 39;
+        	// 
+        	// label1
+        	// 
+        	this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+        	this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
+        	this.label1.ForeColor = System.Drawing.SystemColors.Control;
+        	this.label1.Location = new System.Drawing.Point(365, 9);
+        	this.label1.Name = "label1";
+        	this.label1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+        	this.label1.Size = new System.Drawing.Size(100, 29);
+        	this.label1.TabIndex = 71;
+        	this.label1.Text = "Генериране:";
+        	this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        	// 
         	// Form1
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         	this.ClientSize = new System.Drawing.Size(798, 537);
+        	this.Controls.Add(this.label1);
         	this.Controls.Add(this.button3);
         	this.Controls.Add(this.button2);
         	this.Controls.Add(this.button1);
@@ -438,6 +463,7 @@
         	this.Controls.Add(this.redTop);
         	this.Controls.Add(this.barrierTop);
         	this.Controls.Add(this.barrierRight);
+        	this.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         	this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         	this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
         	this.Margin = new System.Windows.Forms.Padding(2);
@@ -447,11 +473,12 @@
         	this.Text = "TrafficRate";
         	this.ResumeLayout(false);
         }
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label38;
 
         #endregion
         public System.Windows.Forms.Label barrierRight;
         public System.Windows.Forms.Label barrierTop;
-        private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
