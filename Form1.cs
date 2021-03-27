@@ -43,6 +43,8 @@ namespace UrbanRate
            // g.DrawImageUnscaled(transparentImg, movingPicturePosition);  // image3
         }
 
+        CrossRoadTimer crt;
+
         private void button1_Click(object sender, EventArgs e)
         {
             /**Car c = new Car(100, this, new List<Point> { new Point(805, 130), new Point(385, 130), new Point(385, -180) });
@@ -51,8 +53,8 @@ namespace UrbanRate
             fc.Start();
             Ambulance a = new Ambulance(100, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
             a.Start();*/
-            CrossRoadTimer t = new CrossRoadTimer(this);
-            t.Start();
+            crt = new CrossRoadTimer(this);
+            crt.Start();
             generateCars();
             button1.Enabled = false;
         }
@@ -372,36 +374,36 @@ namespace UrbanRate
         { 
 			Random rnd = new Random();
         	int carSpeed = rnd.Next(700, 1000);
-        	int wayPossibility = rnd.Next(0, 8);    
+        	int wayPossibility = rnd.Next(0, 4);    
 			while ( ((wayPossibility == 0 || wayPossibility == 5) && leftCount >= 1)   || 
 					((wayPossibility == 1 || wayPossibility == 7) && rightCount >= 1)  ||
 					((wayPossibility == 2 || wayPossibility == 4) && bottomCount >= 1) ||
 					((wayPossibility == 3 || wayPossibility == 6) && topCount >= 1)    )
         	{
         		if (leftCount >= 1 && rightCount >= 1 && bottomCount >= 1 && topCount >= 1) return;
-        		wayPossibility = rnd.Next(0, 8);
+        		wayPossibility = rnd.Next(0, 4);
         	}        	
         	Car c;
     		switch (wayPossibility)
         	{
         		case 0: 
     				leftFastCar = true;
-    				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(600, 260) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(-256, 260), new Point(600, 260) }, crt);
 					c.Start();
 					break;
         		case 1: 
 					rightFastCar = true;
-    				c = new Car(carSpeed, this, new List<Point> { new Point(805, 130), new Point(-180, 130) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(805, 130), new Point(-180, 130) }, crt);
 					c.Start();
 					break;
         		case 2: 
 					bottomFastCar = true;
-    				c = new Car(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, -180) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(385, 560), new Point(385, -180) }, crt);
 					c.Start();
 					break;
         		case 3: 
 					topFastCar = true;
-    				c = new Car(carSpeed, this, new List<Point> { new Point(250, -180), new Point(250, 560) });
+    				c = new Car(carSpeed, this, new List<Point> { new Point(250, -180), new Point(250, 560) }, crt);
 					c.Start();
 					break;
         		case 4: 

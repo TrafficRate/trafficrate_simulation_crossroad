@@ -22,6 +22,8 @@ namespace UrbanRate
         protected int position; // 1 - top; 2 - right; 3 - left; 4 - bottom 
         protected Boolean waitedOnTrafficLight = false;
 
+        protected CrossRoadTimer crt = null;
+
         int t;
         System.Timers.Timer T;
         System.Timers.Timer LightWait;
@@ -115,6 +117,21 @@ namespace UrbanRate
         	     (velocity >= 35 && position == 4 && Color.Equals(mainForm.yellowBottom.BackColor, Color.Yellow))||
 					this is Ambulance )
         	{
+                if(this is Car && crt != null)
+                {
+                    if((position == 1 || position == 4) && !crt.isCursedRight)
+                    {
+                        crt.cntLeft += crt.cursedOffset;
+                        crt.cntRight += crt.cursedOffset;
+                        crt.isCursedLeft = crt.isCursedRight = true;
+                    }
+                    else if((position == 2 || position == 3) && !crt.isCursedTop)
+                    {
+                        crt.cntTop += crt.cursedOffset;
+                        crt.cntBot += crt.cursedOffset;
+                        crt.isCursedTop = crt.isCursedBot = true;
+                    }
+                }
         		if (position == 3) mainForm.barrierLeft.BackColor = Color.FromArgb(192, 255, 192);
         		else if (position == 2) mainForm.barrierRight.BackColor = Color.FromArgb(192, 255, 192);
         		else if (position == 1) mainForm.barrierTop.BackColor = Color.FromArgb(192, 255, 192);
@@ -212,12 +229,14 @@ namespace UrbanRate
 
     class Car : Vehicle
     {
-        public Car(int v, Form1 f, List<Point> t)
+        public Car(int v, Form1 f, List<Point> t, CrossRoadTimer ct = null)
         {
             img = new PictureBox();
             img.Size = new Size(160, 160);
             img.Location = new Point(t[0].X, t[0].Y);
             img.BackColor = Color.Transparent;
+
+            crt = ct;
             
             velocity = 0.05 * v;
             mainForm = f;

@@ -17,3 +17,13 @@ C:\Users\nicol\Downloads\UrbanRate\UrbanRate\obj\Debug\UrbanRate.Properties.Reso
 C:\Users\nicol\Downloads\UrbanRate\UrbanRate\obj\Debug\UrbanRate.csproj.GenerateResource.Cache
 C:\Users\nicol\Downloads\UrbanRate\UrbanRate\obj\Debug\UrbanRate.exe
 C:\Users\nicol\Downloads\UrbanRate\UrbanRate\obj\Debug\UrbanRate.pdb
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\bin\Debug\UrbanRate.exe.config
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\bin\Debug\UrbanRate.exe
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\bin\Debug\UrbanRate.pdb
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\obj\Debug\UrbanRate.csprojAssemblyReference.cache
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\obj\Debug\UrbanRate.Form1.resources
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\obj\Debug\UrbanRate.Properties.Resources.resources
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\obj\Debug\UrbanRate.csproj.GenerateResource.cache
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\obj\Debug\UrbanRate.csproj.CoreCompileInputs.cache
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\obj\Debug\UrbanRate.exe
+C:\Users\ceco5_000\Source\Repos\trafficrate_simulation_crossroad\obj\Debug\UrbanRate.pdb

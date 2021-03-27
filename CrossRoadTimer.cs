@@ -18,10 +18,12 @@ namespace UrbanRate
         Form1 mainForm;
         System.Timers.Timer T;
 
-        int cntTop, cntBot, cntLeft, cntRight;
+        public int cntTop, cntBot, cntLeft, cntRight;
+        public bool isCursedTop, isCursedBot, isCursedLeft, isCursedRight;
         bool stTop, stBot, stLeft, stRight;
 
         int redDuration = 20, greenDuration = 20;
+        public int cursedOffset = 2;
 
         public CrossRoadTimer(Form1 f)
         {
@@ -54,24 +56,44 @@ namespace UrbanRate
                 stTop = !stTop;
                 if (stTop) cntTop = greenDuration;
                 else cntTop = redDuration;
+                if(isCursedTop)
+                {
+                    isCursedTop = false;
+                    cntTop -= cursedOffset;
+                }
             }
             if(cntBot == 0)
             {
                 stBot = !stBot;
                 if (stBot) cntBot = greenDuration;
                 else cntBot = redDuration;
+                if (isCursedBot)
+                {
+                    isCursedBot = false;
+                    cntBot -= cursedOffset;
+                }
             }
             if(cntLeft == 0)
             {
                 stLeft = !stLeft;
                 if (stLeft) cntLeft = greenDuration;
                 else cntLeft = redDuration;
+                if (isCursedLeft)
+                {
+                    isCursedLeft = false;
+                    cntLeft -= cursedOffset;
+                }
             }
             if(cntRight == 0)
             {
                 stRight = !stRight;
                 if (stRight) cntRight = greenDuration;
                 else cntRight = redDuration;
+                if (isCursedRight)
+                {
+                    isCursedRight = false;
+                    cntRight -= cursedOffset;
+                }
             }
             mainForm.BeginInvoke((MethodInvoker) delegate() {
                 mainForm.cntTopText = "" + cntTop;
