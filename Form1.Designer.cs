@@ -85,10 +85,10 @@
         	// label38
         	// 
         	this.label38.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-        	this.label38.Location = new System.Drawing.Point(-4, 1);
+        	this.label38.Location = new System.Drawing.Point(-4, -3);
         	this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
         	this.label38.Name = "label38";
-        	this.label38.Size = new System.Drawing.Size(799, 43);
+        	this.label38.Size = new System.Drawing.Size(799, 47);
         	this.label38.TabIndex = 39;
         	// 
         	// button1
